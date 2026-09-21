@@ -42,6 +42,7 @@ def login():
 
 @app.route("/callback")
 def callback():
+    global access_token, refresh_token
 
     code = request.args.get("code")
 
@@ -61,6 +62,7 @@ def callback():
     token_data = response.json()
 
     access_token = token_data["access_token"]
+    refresh_token = token_data.get("refresh_token")
 
     spotify_response = requests.get(
         "https://api.spotify.com/v1/me",
@@ -71,8 +73,16 @@ def callback():
 
     return spotify_response.json()
 
+@app.route("/stats")
+def stats():
+    if not access_token:
+        return "Not authenticated.", 401
 
-app.run(
-    host="127.0.0.1",
-    port=3000
-)
+    response = requests.get(
+        "https://api.spotify.com/v1/me/top/artists",
+        headers={"Authorization": f"Bearer {access_token}"}
+        )
+
+    return response.json()
+
+app.run(host="127.0.0.1", port=3000)
