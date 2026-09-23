@@ -1,1017 +1,509 @@
-/* ============================================================
-   RESET
-============================================================ */
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+:root {
+    --bg-base: #121212;
+    --bg-surface: #181818;
+    --bg-surface-hover: #282828;
+    --bg-card: #202020;
+    
+    --primary: #1db954;
+    --primary-hover: #1ed760;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-muted: #6a6a6a;
+    
+    --border-color: rgba(255, 255, 255, 0.08);
+    --danger: #e91429;
 
-* {
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    --transition: all 0.25s ease;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
-
-html {
-    scroll-behavior: smooth;
-}
-
 
 body {
-    min-height: 100vh;
-
-    background: #0b0d12;
-    color: #f1f3f5;
-
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-
-/* ============================================================
-   GLOBAL
-============================================================ */
-
-button {
-    font: inherit;
+.hidden {
+    display: none !important;
 }
 
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-
+/* ==========================================================================
+   LAYOUT & CONTAINER
+   ========================================================================== */
 .container {
-    width: min(1400px, calc(100% - 48px));
-
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
 }
-
 
 .section {
-    margin-top: 48px;
+    margin-bottom: 3.5rem;
 }
-
 
 .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-
-    gap: 24px;
-
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
 }
 
-
-.section-header h2,
-.period-selector h2 {
-    font-size: 1.5rem;
+.section-header h2 {
+    font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: -0.02em;
 }
 
-
-.section-header p,
-.period-selector p {
-    margin-top: 5px;
-
-    color: #8f96a3;
-
-    font-size: 0.9rem;
+.section-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
 }
 
-
-/* ============================================================
-   HEADER
-============================================================ */
-
+/* ==========================================================================
+   HEADER & PROFILE
+   ========================================================================== */
 .header {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 100;
-
-    border-bottom: 1px solid #20242d;
-
-    background: rgba(11, 13, 18, 0.88);
-
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(10px);
 }
 
-
 .header-content {
-    width: min(1400px, calc(100% - 48px));
-
-    min-height: 82px;
-
+    max-width: 1200px;
     margin: 0 auto;
-
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    gap: 24px;
 }
 
-
 .brand h1 {
-    font-size: 1.35rem;
-    font-weight: 750;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary);
     letter-spacing: -0.03em;
 }
 
-
 .brand p {
-    margin-top: 2px;
-
-    color: #7f8794;
-
-    font-size: 0.78rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
 }
-
 
 .profile {
     display: flex;
     align-items: center;
-
-    gap: 11px;
+    gap: 0.75rem;
+    background: var(--bg-card);
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
 }
 
-
-.profile-image {
-    width: 42px;
-    height: 42px;
-
+.profile-image, #profile-image {
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-
     object-fit: cover;
-
-    background: #171a21;
+    background-color: var(--bg-surface-hover);
 }
-
 
 .profile-info {
     display: flex;
     flex-direction: column;
 }
 
-
 .profile-label {
-    color: #777f8c;
-
     font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-
-.profile-info strong {
+#profile-name {
     font-size: 0.85rem;
     font-weight: 600;
+    color: var(--text-primary);
 }
 
-
-/* ============================================================
-   SUMMARY CARDS
-============================================================ */
-
-.summary-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 14px;
-}
-
-
-.stat-card {
-    min-height: 140px;
-
-    padding: 22px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    border: 1px solid #20242d;
-    border-radius: 14px;
-
-    background: #11141a;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
-}
-
-
-.stat-card:hover {
-    transform: translateY(-2px);
-
-    border-color: #343a46;
-
-    background: #141820;
-}
-
-
-.stat-label {
-    color: #858d9a;
-
-    font-size: 0.76rem;
-    font-weight: 600;
-
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-}
-
-
-.stat-value {
-    margin-top: 8px;
-
-    color: #ffffff;
-
-    font-size: 2rem;
-    font-weight: 750;
-
-    letter-spacing: -0.04em;
-}
-
-
-.stat-description {
-    color: #666e7b;
-
-    font-size: 0.75rem;
-}
-
-
-/* ============================================================
+/* ==========================================================================
    PERIOD SELECTOR
-============================================================ */
-
+   ========================================================================== */
 .period-selector {
-    padding: 20px;
-
+    background-color: var(--bg-surface);
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    gap: 24px;
-
-    border: 1px solid #20242d;
-    border-radius: 14px;
-
-    background: #11141a;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
-
 
 .period-buttons {
     display: flex;
-
-    gap: 6px;
-
-    padding: 4px;
-
-    border: 1px solid #242934;
-    border-radius: 9px;
-
-    background: #0c0f14;
+    gap: 0.5rem;
+    background: var(--bg-base);
+    padding: 0.25rem;
+    border-radius: var(--radius-full);
 }
-
 
 .period-button {
-    padding: 9px 13px;
-
-    border: 0;
-    border-radius: 6px;
-
     background: transparent;
-    color: #858d9a;
-
-    cursor: pointer;
-
-    font-size: 0.78rem;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
     font-weight: 600;
-
-    transition:
-        color 0.2s ease,
-        background 0.2s ease;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition);
 }
-
 
 .period-button:hover {
-    color: #ffffff;
+    color: var(--text-primary);
 }
-
 
 .period-button.active {
-    background: #252a34;
-    color: #ffffff;
+    background-color: var(--primary);
+    color: #000000;
 }
 
-
-/* ============================================================
-   ANALYSIS CARDS
-============================================================ */
-
-.analysis-grid {
+/* ==========================================================================
+   GRIDS & STAT CARDS
+   ========================================================================== */
+.summary-grid,
+.analysis-grid,
+.comparison-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 12px;
-
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
 }
 
-
-.analysis-card {
-    padding: 18px;
-
-    border: 1px solid #20242d;
-    border-radius: 12px;
-
-    background: #11141a;
-}
-
-
-.analysis-value {
-    display: block;
-
-    margin-top: 7px;
-
-    font-size: 1.35rem;
-    font-weight: 700;
-
-    letter-spacing: -0.02em;
-}
-
-
-/* ============================================================
-   RANKING LIST
-============================================================ */
-
-.ranking-list {
+.stat-card,
+.analysis-card,
+.comparison-card {
+    background-color: var(--bg-card);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-
-    gap: 8px;
+    gap: 0.5rem;
+    transition: var(--transition);
 }
 
+.stat-card:hover,
+.analysis-card:hover,
+.comparison-card:hover {
+    background-color: var(--bg-surface-hover);
+    transform: translateY(-2px);
+}
 
-/*
-    These classes are intended for elements
-    created dynamically by script.js.
-*/
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.stat-value,
+.analysis-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-description {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   RANKING LIST (ARTISTS & TRACKS)
+   ========================================================================== */
+.ranking-list {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
 
 .ranking-item {
-    min-height: 70px;
-
-    padding: 10px 14px;
-
     display: flex;
     align-items: center;
-
-    gap: 14px;
-
-    border: 1px solid #20242d;
-    border-radius: 11px;
-
-    background: #11141a;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
+    background-color: var(--bg-card);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    gap: 1rem;
+    transition: var(--transition);
 }
-
 
 .ranking-item:hover {
-    border-color: #343a46;
-    background: #141820;
+    background-color: var(--bg-surface-hover);
 }
-
 
 .ranking-position {
-    width: 28px;
-
-    color: #666e7b;
-
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     font-weight: 700;
-
+    color: var(--text-muted);
+    min-width: 28px;
     text-align: center;
 }
-
 
 .ranking-image {
     width: 48px;
     height: 48px;
-
-    flex-shrink: 0;
-
+    border-radius: var(--radius-sm);
     object-fit: cover;
-
-    border-radius: 8px;
-
-    background: #191d25;
+    background-color: var(--bg-surface-hover);
+    flex-shrink: 0;
 }
-
 
 .ranking-info {
-    min-width: 0;
-
     flex: 1;
+    min-width: 0;
 }
-
 
 .ranking-name {
-    overflow: hidden;
-
-    color: #f4f5f7;
-
-    font-size: 0.9rem;
-    font-weight: 650;
-
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
-
 
 .ranking-subtitle {
-    margin-top: 2px;
-
-    overflow: hidden;
-
-    color: #777f8c;
-
-    font-size: 0.75rem;
-
+    font-size: 0.8rem;
+    color: var(--text-secondary);
     white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
-
 .ranking-value {
-    color: #aeb5c0;
-
-    font-size: 0.78rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: var(--bg-surface);
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
 }
 
-
-/* ============================================================
-   GENRES
-============================================================ */
-
+/* ==========================================================================
+   GENRES LIST
+   ========================================================================== */
 .genre-list {
     display: flex;
     flex-wrap: wrap;
-
-    gap: 9px;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
 }
-
 
 .genre-item {
-    padding: 9px 12px;
-
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
-
-    gap: 8px;
-
-    border: 1px solid #252a34;
-    border-radius: 8px;
-
-    background: #11141a;
+    gap: 0.5rem;
+    transition: var(--transition);
 }
 
+.genre-item:hover {
+    background-color: var(--bg-surface-hover);
+    border-color: var(--primary);
+}
 
 .genre-name {
-    color: #dce0e6;
-
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-transform: capitalize;
 }
-
 
 .genre-count {
-    min-width: 22px;
-
-    padding: 2px 6px;
-
-    border-radius: 5px;
-
-    background: #20252e;
-
-    color: #8f97a4;
-
-    font-size: 0.68rem;
-
-    text-align: center;
-}
-
-
-/* ============================================================
-   ALBUMS
-============================================================ */
-
-.album-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, minmax(0, 1fr));
-
-    gap: 12px;
-}
-
-
-.album-card {
-    overflow: hidden;
-
-    border: 1px solid #20242d;
-    border-radius: 12px;
-
-    background: #11141a;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-}
-
-
-.album-card:hover {
-    transform: translateY(-3px);
-
-    border-color: #343a46;
-}
-
-
-.album-image {
-    width: 100%;
-    aspect-ratio: 1;
-
-    object-fit: cover;
-
-    background: #191d25;
-}
-
-
-.album-info {
-    padding: 12px;
-}
-
-
-.album-name {
-    overflow: hidden;
-
-    color: #f0f2f5;
-
-    font-size: 0.82rem;
-    font-weight: 650;
-
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-.album-artist {
-    margin-top: 3px;
-
-    overflow: hidden;
-
-    color: #747c89;
-
-    font-size: 0.72rem;
-
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-/* ============================================================
-   PLAYLISTS
-============================================================ */
-
-.playlist-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 12px;
-}
-
-
-.playlist-card {
-    padding: 12px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    border: 1px solid #20242d;
-    border-radius: 11px;
-
-    background: #11141a;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
-}
-
-
-.playlist-card:hover {
-    border-color: #343a46;
-    background: #141820;
-}
-
-
-.playlist-image {
-    width: 52px;
-    height: 52px;
-
-    flex-shrink: 0;
-
-    object-fit: cover;
-
-    border-radius: 8px;
-
-    background: #191d25;
-}
-
-
-.playlist-info {
-    min-width: 0;
-}
-
-
-.playlist-name {
-    overflow: hidden;
-
-    color: #f0f2f5;
-
-    font-size: 0.82rem;
-    font-weight: 650;
-
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-.playlist-tracks {
-    margin-top: 3px;
-
-    color: #737b88;
-
-    font-size: 0.7rem;
-}
-
-
-/* ============================================================
-   COMPARISON
-============================================================ */
-
-.comparison-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 14px;
-}
-
-
-.comparison-card {
-    padding: 20px;
-
-    border: 1px solid #20242d;
-    border-radius: 12px;
-
-    background: #11141a;
-}
-
-
-.comparison-card h3 {
-    margin-bottom: 14px;
-
-    font-size: 0.95rem;
+    font-size: 0.75rem;
+    background-color: var(--primary);
+    color: #000000;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
     font-weight: 700;
 }
 
+/* ==========================================================================
+   ALBUM & PLAYLIST GRIDS
+   ========================================================================== */
+.album-grid,
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.album-card,
+.playlist-card {
+    background-color: var(--bg-card);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: var(--transition);
+}
+
+.album-card:hover,
+.playlist-card:hover {
+    background-color: var(--bg-surface-hover);
+    transform: translateY(-4px);
+}
+
+.album-image,
+.playlist-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-surface-hover);
+}
+
+.album-info,
+.playlist-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.album-name,
+.playlist-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.album-artist,
+.playlist-tracks {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   COMPARISON & CONSISTENCY CARDS
+   ========================================================================== */
+.comparison-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    color: var(--text-primary);
+}
 
 .comparison-row {
-    min-height: 42px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    border-top: 1px solid #20242d;
-
-    color: #858d9a;
-
-    font-size: 0.78rem;
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
 }
 
+.comparison-row span {
+    color: var(--text-secondary);
+}
 
 .comparison-row strong {
-    color: #e7e9ed;
-
-    font-size: 0.82rem;
+    color: var(--primary);
+    font-size: 1.1rem;
 }
 
-
-/* ============================================================
-   LOADING
-============================================================ */
-
-.loading {
-    padding: 60px 20px;
-
-    color: #747c89;
-
-    font-size: 0.85rem;
-
+/* ==========================================================================
+   LOADING & ERROR STATES
+   ========================================================================== */
+#loading {
     text-align: center;
+    padding: 4rem 1rem;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
-
-.loading.hidden {
-    display: none;
-}
-
-
-/* ============================================================
-   ERROR
-============================================================ */
-
-.error {
-    margin-top: 30px;
-
-    padding: 24px;
-
-    border: 1px solid #3a2529;
-    border-radius: 12px;
-
-    background: #181114;
-}
-
-
-.error h2 {
-    font-size: 1rem;
-}
-
-
-.error p {
-    margin-top: 5px;
-
-    color: #a18a8f;
-
-    font-size: 0.8rem;
-}
-
-
-/* ============================================================
-   FOOTER
-============================================================ */
-
-.footer {
-    width: min(1400px, calc(100% - 48px));
-
-    margin: 70px auto 0;
-
-    padding: 30px 0;
-
-    border-top: 1px solid #20242d;
-
-    color: #626a77;
-
-    font-size: 0.72rem;
-
+#error {
+    background-color: rgba(233, 20, 41, 0.1);
+    border: 1px solid var(--danger);
+    padding: 2rem;
+    border-radius: var(--radius-md);
     text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
 }
 
-
-.footer span {
-    display: block;
-
-    margin-top: 3px;
-
-    color: #4f5662;
+#error h2 {
+    color: var(--danger);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
 }
 
-
-/* ============================================================
-   RESPONSIVE - TABLET
-============================================================ */
-
-@media (max-width: 1100px) {
-
-    .summary-grid {
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-    }
-
-
-    .analysis-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-
-    .album-grid {
-        grid-template-columns:
-            repeat(4, minmax(0, 1fr));
-    }
-
-
-    .playlist-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
+#error-message {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
-
-/* ============================================================
-   RESPONSIVE - MOBILE
-============================================================ */
-
-@media (max-width: 700px) {
-
-    .container {
-        width: min(100% - 24px, 1400px);
-    }
-
-
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 768px) {
     .header-content {
-        width: calc(100% - 24px);
-
-        min-height: 70px;
-    }
-
-
-    .brand p {
-        display: none;
-    }
-
-
-    .profile-label {
-        display: none;
-    }
-
-
-    .profile-image {
-        width: 36px;
-        height: 36px;
-    }
-
-
-    .summary-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 9px;
-    }
-
-
-    .stat-card {
-        min-height: 115px;
-
-        padding: 15px;
-    }
-
-
-    .stat-value {
-        font-size: 1.55rem;
-    }
-
-
-    .section {
-        margin-top: 34px;
-    }
-
-
-    .section-header {
-        align-items: flex-start;
-
         flex-direction: column;
-
-        gap: 5px;
+        align-items: flex-start;
+        gap: 1rem;
     }
-
 
     .period-selector {
-        align-items: flex-start;
-
         flex-direction: column;
-
-        padding: 16px;
+        align-items: flex-start;
     }
-
 
     .period-buttons {
         width: 100%;
-
-        overflow-x: auto;
+        justify-content: space-between;
     }
-
 
     .period-button {
         flex: 1;
-
-        white-space: nowrap;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.75rem;
     }
 
-
-    .analysis-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 9px;
-    }
-
-
-    .analysis-card {
-        padding: 14px;
-    }
-
-
-    .analysis-value {
-        font-size: 1.1rem;
-    }
-
-
-    .album-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-
+    .album-grid,
     .playlist-grid {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     }
-
-
-    .comparison-grid {
-        grid-template-columns:
-            1fr;
-    }
-
-
-    .ranking-item {
-        padding: 9px 10px;
-    }
-
-
-    .ranking-image {
-        width: 42px;
-        height: 42px;
-    }
-
-
-    .ranking-value {
-        display: none;
-    }
-
-
-    .footer {
-        width: calc(100% - 24px);
-    }
-
-}
-
-
-/* ============================================================
-   RESPONSIVE - SMALL MOBILE
-============================================================ */
-
-@media (max-width: 420px) {
-
-    .summary-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .analysis-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .profile-info {
-        display: none;
-    }
-
-
-    .album-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
 }
