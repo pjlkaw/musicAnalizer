@@ -1,16 +1,869 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Music Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="/frontend/style.css"
+    >
 </head>
+
 <body>
-    <header>
-        <h1>Music Analyzer</h1>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="brand">
+                <h1>Music Analyzer</h1>
+                <p>Spotify listening analysis</p>
+            </div>
+
+
+            <div class="profile">
+
+                <img
+                    id="profile-image"
+                    class="profile-image"
+                    src=""
+                    alt="Profile picture"
+                >
+
+                <div class="profile-info">
+
+                    <span class="profile-label">
+                        Logged in as
+                    </span>
+
+                    <strong id="profile-name">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </header>
 
 
-    <script src="/frontend/script.js"></script>
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Overview</h2>
+                    <p>
+                        Your Spotify library and listening profile.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="summary-grid">
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Top Artists
+                    </span>
+
+                    <strong
+                        id="summary-artists"
+                        class="stat-value"
+                    >
+                        -
+                    </strong>
+
+                    <span class="stat-description">
+                        Current period
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Top Tracks
+                    </span>
+
+                    <strong
+                        id="summary-tracks"
+                        class="stat-value"
+                    >
+                        -
+                    </strong>
+
+                    <span class="stat-description">
+                        Current period
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Playlists
+                    </span>
+
+                    <strong
+                        id="summary-playlists"
+                        class="stat-value"
+                    >
+                        -
+                    </strong>
+
+                    <span class="stat-description">
+                        Total playlists
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Saved Tracks
+                    </span>
+
+                    <strong
+                        id="summary-saved-tracks"
+                        class="stat-value"
+                    >
+                        -
+                    </strong>
+
+                    <span class="stat-description">
+                        Saved in your library
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Saved Albums
+                    </span>
+
+                    <strong
+                        id="summary-saved-albums"
+                        class="stat-value"
+                    >
+                        -
+                    </strong>
+
+                    <span class="stat-description">
+                        Saved in your library
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Unique Artists
+                    </span>
+
+                    <strong
+                        id="summary-unique-artists"
+                        class="stat-value"
+                    >
+                        -
+                    </strong>
+
+                    <span class="stat-description">
+                        Across analyzed periods
+                    </span>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <span class="stat-label">
+                        Unique Tracks
+                    </span>
+
+                    <strong
+                        id="summary-unique-tracks"
+                        class="stat-value"
+                    >
+                        -
+                    </strong>
+
+                    <span class="stat-description">
+                        Across analyzed periods
+                    </span>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PERIOD SELECTOR
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="period-selector">
+
+                <div>
+
+                    <h2>Listening Period</h2>
+
+                    <p>
+                        Explore how your preferences change over time.
+                    </p>
+
+                </div>
+
+
+                <div class="period-buttons">
+
+                    <button
+                        class="period-button active"
+                        data-period="short_term"
+                    >
+                        Last 4 Weeks
+                    </button>
+
+                    <button
+                        class="period-button"
+                        data-period="medium_term"
+                    >
+                        Last 6 Months
+                    </button>
+
+                    <button
+                        class="period-button"
+                        data-period="long_term"
+                    >
+                        Long Term
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ARTISTS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Top Artists</h2>
+
+                    <p>
+                        Artists you have been listening to the most.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-grid">
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Average Popularity
+                    </span>
+
+                    <strong
+                        id="artists-average-popularity"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Highest Popularity
+                    </span>
+
+                    <strong
+                        id="artists-highest-popularity"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Average Followers
+                    </span>
+
+                    <strong
+                        id="artists-average-followers"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Total Followers
+                    </span>
+
+                    <strong
+                        id="artists-total-followers"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+            </div>
+
+
+            <div
+                id="artists-list"
+                class="ranking-list"
+            >
+                <!-- Artists inserted by JavaScript -->
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             TRACKS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Top Tracks</h2>
+
+                    <p>
+                        Your most listened tracks.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-grid">
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Average Popularity
+                    </span>
+
+                    <strong
+                        id="tracks-average-popularity"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Highest Popularity
+                    </span>
+
+                    <strong
+                        id="tracks-highest-popularity"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Unique Artists
+                    </span>
+
+                    <strong
+                        id="tracks-unique-artists"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Unique Albums
+                    </span>
+
+                    <strong
+                        id="tracks-unique-albums"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+            </div>
+
+
+            <div
+                id="tracks-list"
+                class="ranking-list"
+            >
+                <!-- Tracks inserted by JavaScript -->
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GENRES
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Top Genres</h2>
+
+                    <p>
+                        Most common genres among your top artists.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="genres-list"
+                class="genre-list"
+            >
+                <!-- Genres inserted by JavaScript -->
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ALBUMS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Top Albums</h2>
+
+                    <p>
+                        Albums represented in your top tracks.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="albums-list"
+                class="album-grid"
+            >
+                <!-- Albums inserted by JavaScript -->
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PLAYLISTS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Playlists</h2>
+
+                    <p>
+                        Your Spotify playlist collection.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-grid">
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Total Playlists
+                    </span>
+
+                    <strong
+                        id="playlist-total"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Total Tracks
+                    </span>
+
+                    <strong
+                        id="playlist-total-tracks"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Average Tracks
+                    </span>
+
+                    <strong
+                        id="playlist-average-tracks"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+            </div>
+
+
+            <div
+                id="playlists-list"
+                class="playlist-grid"
+            >
+                <!-- Playlists inserted by JavaScript -->
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PERIOD COMPARISON
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Period Comparison</h2>
+
+                    <p>
+                        Compare your listening preferences over time.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="comparison-grid">
+
+                <article class="comparison-card">
+
+                    <h3>Artists</h3>
+
+                    <div class="comparison-row">
+
+                        <span>Last 4 Weeks</span>
+
+                        <strong
+                            id="comparison-artists-short"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                    <div class="comparison-row">
+
+                        <span>Last 6 Months</span>
+
+                        <strong
+                            id="comparison-artists-medium"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                    <div class="comparison-row">
+
+                        <span>Long Term</span>
+
+                        <strong
+                            id="comparison-artists-long"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="comparison-card">
+
+                    <h3>Tracks</h3>
+
+                    <div class="comparison-row">
+
+                        <span>Last 4 Weeks</span>
+
+                        <strong
+                            id="comparison-tracks-short"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                    <div class="comparison-row">
+
+                        <span>Last 6 Months</span>
+
+                        <strong
+                            id="comparison-tracks-medium"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                    <div class="comparison-row">
+
+                        <span>Long Term</span>
+
+                        <strong
+                            id="comparison-tracks-long"
+                        >
+                            -
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CONSISTENCY
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>Listening Consistency</h2>
+
+                    <p>
+                        Items that appear across multiple periods.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analysis-grid">
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Repeated Artists
+                    </span>
+
+                    <strong
+                        id="repeated-artists"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+
+                <article class="analysis-card">
+
+                    <span class="stat-label">
+                        Repeated Tracks
+                    </span>
+
+                    <strong
+                        id="repeated-tracks"
+                        class="analysis-value"
+                    >
+                        -
+                    </strong>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LOADING
+        ================================================== -->
+
+        <div
+            id="loading"
+            class="loading"
+        >
+            Loading your Spotify data...
+        </div>
+
+
+        <!-- =================================================
+             ERROR
+        ================================================== -->
+
+        <div
+            id="error"
+            class="error"
+            hidden
+        >
+            <h2>Something went wrong</h2>
+
+            <p id="error-message">
+                Unable to load Spotify data.
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <p>
+            Music Analyzer
+        </p>
+
+        <span>
+            Built with Python, Pandas, Flask and Spotify Web API
+        </span>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="/frontend/script.js"
+    ></script>
+
 </body>
+
 </html>
