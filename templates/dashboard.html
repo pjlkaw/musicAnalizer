@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Spotify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <aside>
+        <div class="logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.341c-.218.358-.684.474-1.042.256-2.859-1.748-6.458-2.143-10.697-1.171-.407.094-.817-.16-.911-.567-.094-.407.16-.817.567-.911 4.639-1.06 8.604-.607 11.785 1.34.358.219.474.685.256 1.053zm1.474-3.279c-.274.446-.86.587-1.306.313-3.272-2.011-8.26-2.595-12.129-1.421-.502.152-1.03-.131-1.182-.633-.152-.502.131-1.03.633-1.182 4.417-1.34 9.914-.688 13.67 1.618.446.274.587.86.314 1.305zm.152-3.415c-.328.522-1.018.685-1.54.357-3.811-2.263-10.088-2.472-13.72-1.368-.6.182-1.238-.163-1.42-.763-.182-.6.163-1.238.763-1.42 4.237-1.287 11.173-1.038 15.56 1.572.522.328.685 1.018.357 1.622z"/>
+            </svg>
+            Spotify API
+        </div>
+
+        <nav>
+            <button class="active" data-tab="top-artists">Top Artistas</button>
+            <button data-tab="top-tracks">Top Músicas</button>
+            <button data-tab="recently-played">Tocadas Recentemente</button>
+            <button data-tab="saved-tracks">Músicas Salvas</button>
+            <button data-tab="saved-albums">Álbuns Salvos</button>
+            <button data-tab="playlists">Playlists</button>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <h1 id="page-title">Top Artistas</h1>
+
+            <div id="user-profile-container">
+                <div class="user-profile">
+                    <img id="user-avatar" src="" alt="Avatar">
+                    <span id="user-name">Carregando...</span>
+                </div>
+            </div>
+        </header>
+
+        <div id="controls-container" class="controls-bar"></div>
+        <div id="stats-container"></div>
+        <div id="genres-container"></div>
+
+        <div id="content-container">
+            <div class="loading">Carregando dados...</div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
